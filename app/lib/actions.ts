@@ -43,10 +43,12 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
+    console.log(JSON.stringify(formData))
     await signIn('credentials', formData);
   } catch (error) {
+    console.log('in catch')
+    console.log(JSON.stringify(error))
     if (error instanceof AuthError) {
-      console.log(JSON.stringify(error))
       switch (error.type) {
         case 'CredentialsSignin':
           return 'Invalid credentials.';
